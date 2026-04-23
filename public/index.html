@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Contact Manager</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <!-- Animated Mesh Background -->
+  <div class="bg-mesh"></div>
+
+  <div class="app-container">
+    <header class="header">
+      <h1>Nexus Contacts</h1>
+      <div class="search-container">
+        <i data-lucide="search" class="search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Search by name or email...">
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="form-section glass-panel">
+        <h2 id="formTitle">
+          <i data-lucide="user-plus" style="color: var(--accent-1);"></i> 
+          Add New Contact
+        </h2>
+        <form id="contactForm">
+          <input type="hidden" id="contactId">
+          
+          <div class="input-group">
+            <label for="name">Full Name</label>
+            <div class="input-wrapper">
+              <i data-lucide="user" class="input-icon"></i>
+              <input type="text" id="name" placeholder="E.g. Sarah Connor" required autocomplete="off">
+            </div>
+          </div>
+          
+          <div class="input-group">
+            <label for="email">Email Address</label>
+            <div class="input-wrapper">
+              <i data-lucide="mail" class="input-icon"></i>
+              <input type="email" id="email" placeholder="sarah@skynet.com" required autocomplete="off">
+            </div>
+          </div>
+          
+          <div class="input-group">
+            <label for="phone">Phone Number</label>
+            <div class="input-wrapper">
+              <i data-lucide="phone" class="input-icon"></i>
+              <input type="number" id="phone" placeholder="555-0199" required autocomplete="off">
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" id="submitBtn" class="btn primary-btn">
+              <i data-lucide="plus" class="btn-icon"></i> Add Contact
+            </button>
+            <button type="button" id="cancelEditBtn" class="btn secondary-btn hidden">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="list-section glass-panel">
+        <div class="list-header">
+          <h2>
+            <i data-lucide="users" style="color: var(--accent-2);"></i>
+            Contact Directory
+          </h2>
+          <span id="contactCount" class="badge">0 Total</span>
+        </div>
+        
+        <ul id="contactList" class="contact-list">
+          <!-- Contact items injected dynamically -->
+        </ul>
+        
+        <div id="emptyState" class="empty-state visible">
+          <i data-lucide="user-x" class="empty-icon"></i>
+          <p>No contacts found in the directory.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
