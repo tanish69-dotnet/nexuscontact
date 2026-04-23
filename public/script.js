@@ -1,6 +1,20 @@
 // Initialize Lucide Icons
 lucide.createIcons();
 
+// --- Landing Page Transition ---
+const landingPage = document.getElementById('landingPage');
+const appContainer = document.getElementById('appContainer');
+const enterBtn = document.getElementById('enterBtn');
+
+enterBtn.addEventListener('click', () => {
+  landingPage.classList.add('hidden');
+  setTimeout(() => {
+    appContainer.classList.remove('hidden');
+  }, 500); // Wait for landing page to fade out
+});
+// -------------------------------
+
+
 const API_URL = '/api/contacts';
 
 // DOM Elements

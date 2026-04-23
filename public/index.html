@@ -3,23 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premium Contact Manager</title>
+  <title>NEXUS | Directory</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 </head>
 <body>
-  <!-- Animated Mesh Background -->
-  <div class="bg-mesh"></div>
+  <!-- 3D Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
 
-  <div class="app-container">
+  <!-- Landing Page -->
+  <section id="landingPage" class="landing-page visible">
+    <div class="landing-content">
+      <div class="glow-orb"></div>
+      <h1 class="glitch" data-text="NEXUS">NEXUS</h1>
+      <p class="subtitle">Global Operations Directory</p>
+      <button id="enterBtn" class="btn primary-btn enter-btn">
+        Initialize Protocol <i data-lucide="chevron-right"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- Main App Interface (Hidden initially) -->
+  <div id="appContainer" class="app-container hidden">
     <header class="header">
-      <h1>Nexus Contacts</h1>
+      <h1>NEXUS <span class="dim">/ DIRECTORY</span></h1>
       <div class="search-container">
         <i data-lucide="search" class="search-icon"></i>
-        <input type="text" id="searchInput" placeholder="Search by name or email...">
+        <input type="text" id="searchInput" placeholder="Search parameters...">
       </div>
     </header>
 
@@ -27,41 +42,41 @@
       <section class="form-section glass-panel">
         <h2 id="formTitle">
           <i data-lucide="user-plus" style="color: var(--accent-1);"></i> 
-          Add New Contact
+          New Entry
         </h2>
         <form id="contactForm">
           <input type="hidden" id="contactId">
           
           <div class="input-group">
-            <label for="name">Full Name</label>
+            <label for="name">Identifier</label>
             <div class="input-wrapper">
               <i data-lucide="user" class="input-icon"></i>
-              <input type="text" id="name" placeholder="E.g. Sarah Connor" required autocomplete="off">
+              <input type="text" id="name" placeholder="Subject Name" required autocomplete="off">
             </div>
           </div>
           
           <div class="input-group">
-            <label for="email">Email Address</label>
+            <label for="email">Comm Link</label>
             <div class="input-wrapper">
               <i data-lucide="mail" class="input-icon"></i>
-              <input type="email" id="email" placeholder="sarah@skynet.com" required autocomplete="off">
+              <input type="email" id="email" placeholder="subject@nexus.net" required autocomplete="off">
             </div>
           </div>
           
           <div class="input-group">
-            <label for="phone">Phone Number</label>
+            <label for="phone">Frequency</label>
             <div class="input-wrapper">
               <i data-lucide="phone" class="input-icon"></i>
-              <input type="number" id="phone" placeholder="555-0199" required autocomplete="off">
+              <input type="number" id="phone" placeholder="Encryption Key..." required autocomplete="off">
             </div>
           </div>
           
           <div class="form-actions">
             <button type="submit" id="submitBtn" class="btn primary-btn">
-              <i data-lucide="plus" class="btn-icon"></i> Add Contact
+              <i data-lucide="plus" class="btn-icon"></i> Append
             </button>
             <button type="button" id="cancelEditBtn" class="btn secondary-btn hidden">
-              Cancel
+              Abort
             </button>
           </div>
         </form>
@@ -70,10 +85,10 @@
       <section class="list-section glass-panel">
         <div class="list-header">
           <h2>
-            <i data-lucide="users" style="color: var(--accent-2);"></i>
-            Contact Directory
+            <i data-lucide="database" style="color: var(--accent-2);"></i>
+            Active Subjects
           </h2>
-          <span id="contactCount" class="badge">0 Total</span>
+          <span id="contactCount" class="badge">0 Active</span>
         </div>
         
         <ul id="contactList" class="contact-list">
@@ -81,8 +96,8 @@
         </ul>
         
         <div id="emptyState" class="empty-state visible">
-          <i data-lucide="user-x" class="empty-icon"></i>
-          <p>No contacts found in the directory.</p>
+          <i data-lucide="shield-alert" class="empty-icon"></i>
+          <p>No subjects located in sector.</p>
         </div>
       </section>
     </main>
@@ -91,6 +106,8 @@
   <!-- Toast Notifications Container -->
   <div id="toastContainer" class="toast-container"></div>
 
+  <!-- Scripts -->
+  <script src="3d-bg.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -1,18 +1,19 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { MongoClient, ObjectId } = require('mongodb');
 const path = require('path');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// MongoDB Connection URL (Standard URI format to bypass SRV issues on old driver)
-const url = 'mongodb://tanish50:Tanish2410@ac-48cups9-shard-00-00.yuahriw.mongodb.net:27017,ac-48cups9-shard-00-01.yuahriw.mongodb.net:27017,ac-48cups9-shard-00-02.yuahriw.mongodb.net:27017/?ssl=true&replicaSet=atlas-eq9t8s-shard-0&authSource=admin&appName=Cluster0';
+// MongoDB Connection URL (Using Environment Variable)
+const url = process.env.MONGODB_URI;
 const dbName = 'contactManager';
 let db;
 
